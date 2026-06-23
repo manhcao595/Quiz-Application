@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="app_name">Thi Trắc Nghiệm</string>
+
+    <string name="app_title">Thi Trắc Nghiệm</string>
+
+    <string name="welcome">Xin chào, Sinh viên</string>
+
+    <string name="start_exam">Bắt đầu thi</string>
+
+    <string name="exam_history">Lịch sử thi</string>
+
+</resources>

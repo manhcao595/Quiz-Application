@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "QuizDB.db";
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 5;
 
     // ===== TABLE NAME =====
     public static final String TABLE_TAIKHOAN = "TaiKhoan";
@@ -116,7 +116,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // ADMIN
         db.execSQL(
-                "INSERT INTO TaiKhoan(TenDangNhap,MatKhau,HoTen,VaiTro) " +
+                "INSERT OR IGNORE INTO TaiKhoan " +
+                        "(TenDangNhap,MatKhau,HoTen,VaiTro) " +
                         "VALUES('admin','123456','Administrator','ADMIN')"
         );
     }

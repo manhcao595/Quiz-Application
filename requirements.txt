@@ -1,0 +1,4 @@
+Android Studio Hedgehog+
+JDK 17
+Android SDK API 35+
+SQLite

@@ -1,0 +1,117 @@
+DATABASE: QuizDB.db
+
+=================================
+TABLE: TaiKhoan
+===============
+
+MaTK            INTEGER PRIMARY KEY AUTOINCREMENT
+TenDangNhap     TEXT UNIQUE NOT NULL
+MatKhau         TEXT NOT NULL
+HoTen           TEXT NOT NULL
+VaiTro          TEXT NOT NULL
+
+Mô tả:
+
+* Lưu thông tin tài khoản người dùng và quản trị viên.
+
+=================================
+TABLE: DeThi
+============
+
+MaDe            INTEGER PRIMARY KEY AUTOINCREMENT
+TenDe           TEXT NOT NULL
+MoTa            TEXT
+ThoiGian        INTEGER NOT NULL
+
+Mô tả:
+
+* Lưu thông tin đề thi.
+
+=================================
+TABLE: CauHoi
+=============
+
+MaCH            INTEGER PRIMARY KEY AUTOINCREMENT
+MaDe            INTEGER NOT NULL
+NoiDung         TEXT NOT NULL
+DapAnA          TEXT NOT NULL
+DapAnB          TEXT NOT NULL
+DapAnC          TEXT NOT NULL
+DapAnD          TEXT NOT NULL
+DapAnDung       TEXT NOT NULL
+
+Khóa ngoại:
+
+* MaDe -> DeThi(MaDe)
+
+Mô tả:
+
+* Lưu các câu hỏi thuộc từng đề thi.
+
+=================================
+TABLE: BaiThi
+=============
+
+MaBaiThi        INTEGER PRIMARY KEY AUTOINCREMENT
+MaTK            INTEGER NOT NULL
+MaDe            INTEGER NOT NULL
+NgayThi         TEXT NOT NULL
+SoCauDung       INTEGER
+Diem            REAL
+
+Khóa ngoại:
+
+* MaTK -> TaiKhoan(MaTK)
+* MaDe -> DeThi(MaDe)
+
+Mô tả:
+
+* Lưu thông tin mỗi lần người dùng làm bài thi.
+
+=================================
+TABLE: ChiTietBaiThi
+====================
+
+MaChiTiet       INTEGER PRIMARY KEY AUTOINCREMENT
+MaBaiThi        INTEGER NOT NULL
+MaCH            INTEGER NOT NULL
+DapAnChon       TEXT
+
+Khóa ngoại:
+
+* MaBaiThi -> BaiThi(MaBaiThi)
+* MaCH -> CauHoi(MaCH)
+
+Mô tả:
+
+* Lưu đáp án mà người dùng đã chọn cho từng câu hỏi.
+
+=================================
+TABLE: KetQua
+=============
+
+MaKetQua        INTEGER PRIMARY KEY AUTOINCREMENT
+MaBaiThi        INTEGER NOT NULL
+TongSoCau       INTEGER
+SoCauDung       INTEGER
+SoCauSai        INTEGER
+Diem            REAL
+
+Khóa ngoại:
+
+* MaBaiThi -> BaiThi(MaBaiThi)
+
+Mô tả:
+
+* Lưu kết quả sau khi chấm điểm bài thi.
+
+=================================
+DỮ LIỆU MẪU
+===========
+
+ADMIN
+
+TenDangNhap : admin
+MatKhau     : 123456
+HoTen       : Administrator
+VaiTro      : ADMIN

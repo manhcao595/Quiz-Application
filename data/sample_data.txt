@@ -1,0 +1,53 @@
+========================
+TAI KHOAN MAU
+========================
+
+ADMIN
+TenDangNhap: admin
+MatKhau: 123456
+HoTen: Administrator
+VaiTro: ADMIN
+
+========================
+DE THI MAU
+========================
+
+MaDe: 1
+TenDe: Android Basic
+MoTa: De thu nghiem
+ThoiGian: 10 phut
+
+========================
+CAU HOI MAU
+========================
+
+MaCH: 1
+MaDe: 1
+NoiDung: Android la gi?
+A: Ngon ngu
+B: He dieu hanh
+C: Database
+D: OS Kernel
+DapAnDung: B
+
+--------------------------------
+
+MaCH: 2
+MaDe: 1
+NoiDung: Java chay tren?
+A: JVM
+B: CPU
+C: GPU
+D: RAM
+DapAnDung: A
+
+--------------------------------
+
+MaCH: 3
+MaDe: 1
+NoiDung: SQLite la gi?
+A: DB
+B: IDE
+C: OS
+D: Game
+DapAnDung: A

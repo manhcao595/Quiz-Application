@@ -4,108 +4,169 @@
 
 ### Bài toán
 
-Hiện nay nhu cầu học tập và kiểm tra kiến thức trên thiết bị di động ngày càng phổ biến. Việc xây dựng một ứng dụng thi trắc nghiệm giúp người học dễ dàng ôn tập, làm bài kiểm tra và theo dõi kết quả.
+Hiện nay nhu cầu học tập và kiểm tra kiến thức trên thiết bị di động ngày càng phổ biến. Việc xây dựng một ứng dụng thi trắc nghiệm giúp người học dễ dàng ôn tập, kiểm tra kiến thức và theo dõi kết quả học tập mọi lúc mọi nơi.
 
 ### Mục tiêu
 
-- Xây dựng ứng dụng thi trắc nghiệm trên Android.
+- Xây dựng ứng dụng thi trắc nghiệm trên nền tảng Android.
+- Hỗ trợ đăng ký và đăng nhập tài khoản.
 - Quản lý đề thi và câu hỏi.
-- Chấm điểm tự động.
-- Lưu lịch sử thi.
-- Thống kê dữ liệu hệ thống.
+- Tự động chấm điểm bài thi.
+- Lưu lịch sử làm bài và kết quả thi.
+- Thống kê dữ liệu hệ thống dành cho quản trị viên.
 
 ---
 
 ## 2. Dataset / Dữ liệu sử dụng
 
-Hệ thống sử dụng dữ liệu được lưu bằng SQLite.
+### Nguồn dữ liệu
 
-Các bảng chính:
+Dữ liệu được xây dựng thủ công và lưu trữ cục bộ bằng SQLite trong ứng dụng Android.
 
-### TaiKhoan
+Cơ sở dữ liệu được khởi tạo thông qua lớp `DatabaseHelper`.
 
-* MaTK
-* TenDangNhap
-* MatKhau
-* HoTen
-* VaiTro
+### Các bảng dữ liệu chính
 
-### DeThi
+#### TaiKhoan
 
-* MaDe
-* TenDe
-* MoTa
-* ThoiGian
+- MaTK
+- TenDangNhap
+- MatKhau
+- HoTen
+- VaiTro
 
-### CauHoi
+#### DeThi
 
-* MaCH
-* MaDe
-* NoiDung
-* DapAnA
-* DapAnB
-* DapAnC
-* DapAnD
-* DapAnDung
+- MaDe
+- TenDe
+- MoTa
+- ThoiGian
 
-### BaiThi
+#### CauHoi
 
-* MaBaiThi
-* MaTK
-* MaDe
-* NgayThi
-* SoCauDung
-* Diem
+- MaCH
+- MaDe
+- NoiDung
+- DapAnA
+- DapAnB
+- DapAnC
+- DapAnD
+- DapAnDung
 
-### ChiTietBaiThi
+#### BaiThi
 
-* MaChiTiet
-* MaBaiThi
-* MaCH
-* DapAnChon
+- MaBaiThi
+- MaTK
+- MaDe
+- NgayThi
+- SoCauDung
+- Diem
 
-### KetQua
+#### ChiTietBaiThi
 
-* MaKetQua
-* MaBaiThi
-* TongSoCau
-* SoCauDung
-* SoCauSai
-* Diem
+- MaChiTiet
+- MaBaiThi
+- MaCH
+- DapAnChon
+
+#### KetQua
+
+- MaKetQua
+- MaBaiThi
+- TongSoCau
+- SoCauDung
+- SoCauSai
+- Diem
 
 ---
 
-## 3. Quy trình hoạt động
+## 3. Pipeline xử lý hệ thống
 
-Đăng ký
+Đăng ký tài khoản
+
 ↓
+
 Đăng nhập
+
 ↓
+
 Chọn đề thi
+
 ↓
+
+Tải câu hỏi từ SQLite
+
+↓
+
 Làm bài thi
+
 ↓
+
 Nộp bài
+
 ↓
+
 Chấm điểm tự động
+
 ↓
+
 Lưu kết quả
+
 ↓
+
+Xem kết quả thi
+
+↓
+
 Xem lịch sử thi
 
 ---
 
-## 4. Công nghệ sử dụng
+## 4. Kiến trúc hệ thống
+
+Ứng dụng được xây dựng theo kiến trúc:
+
+Activity
+
+↓
+
+DAO
+
+↓
+
+SQLite
+
+Trong đó:
+
+- Activity: Quản lý giao diện và tương tác với người dùng.
+- DAO (Data Access Object): Thực hiện các thao tác truy xuất dữ liệu.
+- SQLite: Lưu trữ dữ liệu cục bộ của hệ thống.
+
+Ví dụ:
+
+LoginActivity
+
+↓
+
+TaiKhoanDAO
+
+↓
+
+SQLite
+
+---
+
+## 5. Công nghệ sử dụng
 
 - Java
 - Android Studio
 - SQLite
 - Material Design
-- UML (Use Case, Activity Diagram, Class Diagram)
+- UML (Use Case Diagram, Sequence Diagram, Class Diagram)
 
 ---
 
-## 5. Kết quả đạt được
+## 6. Kết quả đạt được
 
 ### Chức năng người dùng
 
@@ -121,15 +182,35 @@ Xem lịch sử thi
 ### Chức năng quản trị
 
 - Quản lý đề thi
+- Thêm đề thi
+- Sửa đề thi
+- Xóa đề thi
 - Quản lý câu hỏi
+- Thêm câu hỏi
+- Sửa câu hỏi
+- Xóa câu hỏi
 - Thống kê hệ thống
 - Đăng xuất
 
+### Thống kê hệ thống
+
+- Tổng số tài khoản
+- Tổng số đề thi
+- Tổng số câu hỏi
+- Tổng số lượt thi
+
+### Kết quả triển khai
+
+- Hoàn thiện 2 phân hệ User và Admin.
+- Hoàn thiện cơ sở dữ liệu SQLite gồm 6 bảng.
+- Triển khai thành công trên Android Emulator.
+- Có thể chạy trên thiết bị Android thực tế.
+
 ---
 
-## 6. Hướng dẫn chạy chương trình
+## 7. Hướng dẫn chạy chương trình
 
-### Cài đặt môi trường
+### Yêu cầu môi trường
 
 - Android Studio Hedgehog hoặc mới hơn
 - JDK 17
@@ -137,41 +218,77 @@ Xem lịch sử thi
 
 ### Clone project
 
-git clone <link_github>
+```bash
+git clone https://github.com/<username>/Quiz-Application.git
+```
 
 ### Mở project
 
 - Mở Android Studio
-- Chọn Open
-- Chọn thư mục Quiz-App
+- Chọn Open Project
+- Chọn thư mục Quiz-Application
 
 ### Chạy ứng dụng
 
 - Tạo Android Emulator
-  hoặc
-- Kết nối điện thoại Android
 
-Nhấn Run để chạy ứng dụng.
+hoặc
 
----
+- Kết nối điện thoại Android thật
 
-## 7. Cấu trúc thư mục
-
-app/ : Source code Android
-
-demo/ : Hình ảnh và video demo
-
-data/ : Tài liệu dữ liệu mẫu
-
-reports/ : Báo cáo đồ án
-
-slides/ : Slide thuyết trình
-
-README.md : Hướng dẫn sử dụng
+Sau đó nhấn Run để khởi động ứng dụng.
 
 ---
 
-## 8. Tác giả
+## 8. Tài khoản mặc định
+
+### Quản trị viên
+
+Tên đăng nhập:
+
+```text
+admin
+```
+
+Mật khẩu:
+
+```text
+123456
+```
+
+---
+
+## 9. Cấu trúc thư mục dự án
+
+```text
+Quiz-Application
+│
+├── app/    Source code Android
+│
+├── demo/
+│   ├── screenshots
+│   └── demo_video.mp4
+│
+├── data/
+│   ├── database_schema.sql
+│   └── sample_data.txt
+│
+├── reports/
+│   ├── BaoCao.docx
+│   └── BaoCao.pdf
+│
+├── slides/
+│   ├── Slide.pptx
+│   └── Slide.pdf
+│
+├── README.md
+├── requirements.txt
+└── .gitignore
+```
+
+---
+
+## 10. Tác giả
 
 Họ tên: Cao Duy Mạnh
 
@@ -179,4 +296,4 @@ MSSV: 12523099
 
 Lớp: 12523T.1
 
-Trường: Đại học sư phạm kỹ thuật Hưng Yên
+Trường: Đại học Sư phạm Kỹ thuật Hưng Yên
